@@ -1,0 +1,11 @@
+.filter-container {
+  margin-bottom: 20px;
+}
+
+.filter-container select {
+  padding: 7px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+}

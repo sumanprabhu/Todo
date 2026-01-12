@@ -1,6 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTodo, editTodo, markAsDone } from "../features/todo/todoSlice";
+import {
+  deleteTodo,
+  editTodo,
+  markAsDone,
+} from "../../features/todo/todoSlice";
 import { useEffect, useState } from "react";
+import "./TaskList.css";
+import { FaTrash, FaEdit } from "react-icons/fa";
 
 export default function TaskList() {
   const todos = useSelector((state) => state.todos.todos);
@@ -37,12 +43,22 @@ export default function TaskList() {
     setEditingText("");
   };
 
+  let emptyMessage = "";
+
+  if (filter === "complete" && filteredTodos.length === 0) {
+    emptyMessage = "No tasks completed yet";
+  }
+
   return (
-    <div>
-      <h1>Tasks</h1>
+    <div className="tasks-wrapper">
+      <h1 className="tasks-title">Tasks</h1>
       <ul>
+        {filteredTodos.length === 0 && (
+          <p className="empty-text">{emptyMessage}</p>
+        )}
         {filteredTodos.map((todo) => (
           <li
+            className="task-row"
             key={todo.id}
             style={{ display: "flex", gap: "10px", alignItems: "center" }}
           >
@@ -53,6 +69,7 @@ export default function TaskList() {
             />
             {editingId === todo.id ? (
               <input
+                className="task-input"
                 type="text"
                 id="editTask"
                 name="editTask"
@@ -70,16 +87,24 @@ export default function TaskList() {
             )}
             {editingId === todo.id ? (
               <>
-                <button onClick={handleSaveEdit}>Save</button>
-                <button onClick={handleCancelEdit}>Cancel</button>
+                <button className="save-btn" onClick={handleSaveEdit}>
+                  Save
+                </button>
+                <button className="cancel-btn" onClick={handleCancelEdit}>
+                  Cancel
+                </button>
               </>
             ) : (
-              <>
-                <button onClick={() => dispatch(deleteTodo(todo.id))}>
-                  Delete
-                </button>
-                <button onClick={() => handleStartEdit(todo)}>Edit</button>
-              </>
+              <div className="task-actions">
+                <FaTrash
+                  className="icon delete-icon"
+                  onClick={() => dispatch(deleteTodo(todo.id))}
+                />
+                <FaEdit
+                  className="icon edit-icon"
+                  onClick={() => handleStartEdit(todo)}
+                />
+              </div>
             )}
           </li>
         ))}

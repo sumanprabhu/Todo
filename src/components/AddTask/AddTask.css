@@ -1,0 +1,27 @@
+.addtask-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.addtask-container button {
+  background: #5b6dfc;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.addtask-container button:hover {
+  opacity: 0.9;
+}
+
+.addtask-container input {
+  padding: 8px 10px;
+  width: 190px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+}

@@ -1,7 +1,7 @@
-import { Provider } from 'react-redux'
-import './App.css'
-import { store } from './app/store'
-import TodoPage from './components/TodoPage'
+import { Provider } from "react-redux";
+import "./App.css";
+import { store } from "./app/store";
+import TodoPage from "./components/TodoPage";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
         <TodoPage />
       </Provider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
