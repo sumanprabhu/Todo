@@ -3,13 +3,13 @@ import { deleteTodo, editTodo, markAsDone } from "../features/todo/todoSlice";
 import { useEffect, useState } from "react";
 
 export default function TaskList() {
-  const todos = useSelector((state) => state.todos);
+  const todos = useSelector((state) => state.todos.todos);
   const filter = useSelector((state) => state.todos.filter);
 
   const filteredTodos = todos.filter((todo) => {
     if (filter === "complete") return todo.isDone;
     if (filter === "incomplete") return !todo.isDone;
-    return true;
+    return true; // all
   });
 
   useEffect(() => {
